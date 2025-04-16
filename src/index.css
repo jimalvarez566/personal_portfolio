@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Space Grotesk", sans-serif;
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+}
+
+@layer utilities {
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  .animate-blink {
+    animation: loading 0.8s step-end infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+  .animate-loading-bar {
+    animation: loading 0.8s ease infinite;
+  }
+}
