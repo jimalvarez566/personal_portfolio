@@ -23,35 +23,9 @@ A modern, responsive portfolio website built with React and Vite, showcasing my 
 - **Form Handling**: React Hook Form
 - **Deployment**: GitHub Pages
 
-## 📦 Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/jimalvarez566/personal_portfolio.git
 ```
 
-2. Install dependencies:
-```bash
-cd personal_portfolio
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Build for production:
-```bash
-npm run build
-```
-
-## 🎨 Customization
-
-- Update your personal information in the respective components
-- Modify the color scheme in `tailwind.config.js`
-- Add or remove sections as needed
-- Update the projects section with your own work
 
 ## 📝 License
 
