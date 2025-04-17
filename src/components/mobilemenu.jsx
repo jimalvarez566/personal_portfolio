@@ -1,95 +1,70 @@
-import { useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
-export const Mobilemenu = ({menuOpen, setMenuOpen, scrollToSection}) => {
-    return (
-        <div className={`fixed top-0 left-0 w-full bg-[rgba(10,10,10,0.8)] z-40 flex flex-col items-center justify-center
-                         transition-all duration-300 ease-in-out
-                         
-                         ${menuOpen ? "h-screen opacity-100 pointer-events-auto"
-                                      :"h-0 opacity-0 pointer-events-none" 
-                                    }
-        `}
-    >
+export const Mobilemenu = ({ menuOpen, setMenuOpen, scrollToSection }) => {
+  const menuVariants = {
+    hidden: {
+      opacity: 0,
+      x: "100%",
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30
+      }
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30
+      }
+    }
+  };
 
-        <button
-        onClick={() => setMenuOpen(false)} 
-        className="absolute top-6 right-6 text-white text-3xl focus:outine-none cursor-pointer"
-        aria-label="Close Menu"
-        >
-            &times;
-        </button>
+  const menuItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'contact', label: 'Contact' }
+  ];
 
-        <a 
-         href="#home"
-         onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('home');
-            setMenuOpen(false);
-         }}
-         className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
-                    ${
-                        menuOpen
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-5"
-                    }
-                `}
-        >
-         Home
-        </a>
+  return (
+    <>
+      {menuOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black/50 z-[60]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
 
-        <a 
-            href="#about"
-            onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('about');
+      <motion.div
+        className="fixed top-0 right-0 w-64 h-screen bg-white dark:bg-gray-900 z-[70] p-4 shadow-lg"
+        variants={menuVariants}
+        initial="hidden"
+        animate={menuOpen ? "visible" : "hidden"}
+        exit="hidden"
+      >
+        <div className="flex flex-col space-y-4 mt-20">
+          {menuItems.map((item) => (
+            <motion.button
+              key={item.id}
+              onClick={() => {
+                scrollToSection(item.id);
                 setMenuOpen(false);
-            }}
-            className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
-                    ${
-                        menuOpen
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-5"
-                    }
-                `}
-        >
-         About
-        </a>
-
-        <a 
-         href="#projects"
-         onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('projects');
-            setMenuOpen(false);
-         }}
-        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
-        ${
-            menuOpen
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-5"
-        }
-    `}
-        >
-         Projects
-        </a>
-
-        <a 
-        href="#contact"
-        onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('contact');
-            setMenuOpen(false);
-        }}
-        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
-        ${
-            menuOpen
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-5"
-        }
-    `}
-         >
-         Contact
-        </a>
-    </div>
-    );
+              }}
+              className="w-full text-left px-4 py-2 text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+              whileHover={{ x: 5 }}
+            >
+              {item.label}
+            </motion.button>
+          ))}
+        </div>
+      </motion.div>
+    </>
+  );
 };

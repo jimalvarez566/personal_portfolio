@@ -1,28 +1,46 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const skills = [
-  { name: "JavaScript", level: 90 },
-  { name: "React", level: 85 },
-  { name: "Node.js", level: 80 },
-  { name: "HTML/CSS", level: 95 },
-  { name: "Git", level: 85 }
+  { name: "C++", category: "Languages & Backend", level: 85 },
+  { name: "Python", category: "Languages & Backend", level: 90 },
+  { name: "JavaScript", category: "Languages & Backend", level: 85 },
+  { name: "mySQL", category: "Languages & Backend", level: 80 },
+  { name: "HTML", category: "Frontend", level: 90 },
+  { name: "CSS", category: "Frontend", level: 90 },
+  { name: "React.js", category: "Frontend", level: 85 },
+  { name: "Git Control", category: "Tools", level: 85 },
+  { name: "Agile Methodology", category: "Tools", level: 80 },
+  { name: "API Integration", category: "Tools", level: 85 }
 ];
 
-const experiences = [
+const education = {
+  school: "California State University, Fullerton",
+  degree: "Bachelor of Science",
+  major: "Computer Science",
+  period: "August 2022 - Present",
+  coursework: [
+    "Object Oriented Programming",
+    "Data Structures",
+    "Python Programming",
+    "Compilers and Languages",
+    "Software Engineering",
+    "File Systems & Databases",
+    "Front-End Engineering",
+    "Discrete Mathematics",
+    "Linear Algebra"
+  ]
+};
+
+const organizations = [
   {
-    title: "Software Developer",
-    company: "Company Name",
-    period: "2022 - Present",
-    description: "Description of your role and achievements...",
-    technologies: ["React", "Node.js", "TypeScript"]
+    name: "CSUF Theta Tau Professional Engineering Fraternity",
+    period: "September 2023 - Present"
   },
   {
-    title: "Web Developer",
-    company: "Previous Company",
-    period: "2020 - 2022",
-    description: "Description of your role and achievements...",
-    technologies: ["JavaScript", "HTML/CSS", "Vue.js"]
+    name: "CSUF Association for Computing Machinery (ACM)",
+    period: "January 2024 - Present"
   }
 ];
 
@@ -87,7 +105,7 @@ export const About = () => {
         </motion.h2>
         
         <motion.div 
-          className="grid md:grid-cols-2 gap-12 items-center"
+          className="grid md:grid-cols-2 gap-12 items-start"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -155,7 +173,7 @@ export const About = () => {
                   ease: "easeInOut"
                 }}
               >
-                Full Stack
+                Computer Science
               </motion.div>
               <motion.div
                 className="absolute -top-4 -left-4 bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-medium"
@@ -172,87 +190,89 @@ export const About = () => {
                 Developer
               </motion.div>
             </div>
+
+            {/* Social Links */}
+            <motion.div 
+              className="flex justify-center gap-4 mt-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href="https://github.com/jimalvarez566"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaGithub className="w-8 h-8" />
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/jim-alvarez/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaLinkedin className="w-8 h-8" />
+              </motion.a>
+            </motion.div>
           </motion.div>
 
           <motion.div 
-            className="space-y-6"
+            className="space-y-8"
             variants={itemVariants}
           >
-            <motion.p 
-              className="text-lg leading-relaxed text-gray-600 dark:text-gray-400"
-              whileHover={{ x: 5 }}
-            >
-              Hello! I'm a passionate developer with a strong focus on creating beautiful and functional web applications.
-              I love solving complex problems and turning ideas into reality through code.
-            </motion.p>
-            
-            <div className="space-y-4">
+            <motion.div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Education</h3>
+              <div className="space-y-2">
+                <p className="text-lg font-medium text-gray-800 dark:text-gray-200">{education.school}</p>
+                <p className="text-gray-600 dark:text-gray-400">{education.degree} in {education.major}</p>
+                <p className="text-gray-500 dark:text-gray-500">{education.period}</p>
+              </div>
+            </motion.div>
+
+            <motion.div className="space-y-4">
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Skills</h3>
-              <div className="space-y-4">
-                {skills.map((skill, index) => (
-                  <motion.div 
-                    key={index}
-                    className="space-y-2"
-                    variants={itemVariants}
-                  >
-                    <div className="flex justify-between">
-                      <span className="text-gray-700 dark:text-gray-300">{skill.name}</span>
-                      <span className="text-gray-500 dark:text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-blue-500 rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                      />
-                    </div>
-                  </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Object.entries(skills.reduce((acc, skill) => {
+                  if (!acc[skill.category]) acc[skill.category] = [];
+                  acc[skill.category].push(skill);
+                  return acc;
+                }, {})).map(([category, categorySkills]) => (
+                  <div key={category} className="space-y-2">
+                    <h4 className="font-medium text-gray-700 dark:text-gray-300">{category}</h4>
+                    {categorySkills.map((skill, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                          <div 
+                            className="bg-blue-500 h-2 rounded-full"
+                            style={{ width: `${skill.level}%` }}
+                          />
+                        </div>
+                        <span className="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 ))}
               </div>
-            </div>
-          </motion.div>
-        </motion.div>
+            </motion.div>
 
-        <motion.div 
-          className="mt-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Experience</h3>
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <motion.div 
-                key={index}
-                className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700"
-                variants={itemVariants}
-                whileHover={{ x: 5 }}
-              >
-                <div className="absolute left-[-9px] top-0 w-4 h-4 bg-blue-500 rounded-full" />
-                <h4 className="text-xl font-medium text-gray-900 dark:text-white">{exp.title}</h4>
-                <p className="text-gray-500 dark:text-gray-400">{exp.company} • {exp.period}</p>
-                <p className="mt-2 text-gray-600 dark:text-gray-400">{exp.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, techIndex) => (
-                    <motion.span
-                      key={techIndex}
-                      className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-full text-sm"
-                      whileHover={{ 
-                        scale: 1.1,
-                        backgroundColor: "rgba(59, 130, 246, 0.5)",
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            <motion.div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Organizations</h3>
+              <div className="space-y-2">
+                {organizations.map((org, index) => (
+                  <div key={index} className="flex justify-between items-center">
+                    <span className="text-gray-700 dark:text-gray-300">{org.name}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{org.period}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

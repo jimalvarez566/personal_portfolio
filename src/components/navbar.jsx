@@ -75,10 +75,8 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
   return (
     <>
       <motion.nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled 
-            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800' 
-            : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-[55] bg-white dark:bg-gray-900 transition-colors duration-300 ${
+          scrolled ? "shadow-lg" : ""
         }`}
         variants={navVariants}
         initial="hidden"
