@@ -3,34 +3,23 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const skills = [
-  { name: "C++", category: "Languages & Backend", level: 85 },
-  { name: "Python", category: "Languages & Backend", level: 90 },
-  { name: "JavaScript", category: "Languages & Backend", level: 85 },
-  { name: "mySQL", category: "Languages & Backend", level: 80 },
-  { name: "HTML", category: "Frontend", level: 90 },
-  { name: "CSS", category: "Frontend", level: 90 },
-  { name: "React.js", category: "Frontend", level: 85 },
-  { name: "Git Control", category: "Tools", level: 85 },
-  { name: "Agile Methodology", category: "Tools", level: 80 },
-  { name: "API Integration", category: "Tools", level: 85 }
+  { name: "C++", category: "Languages & Backend", level: 100 },
+  { name: "Python", category: "Languages & Backend", level: 100 },
+  { name: "JavaScript", category: "Languages & Backend", level: 100 },
+  { name: "mySQL", category: "Languages & Backend", level: 100 },
+  { name: "HTML", category: "Frontend", level: 100 },
+  { name: "CSS", category: "Frontend", level: 100 },
+  { name: "React.js", category: "Frontend", level: 100 },
+  { name: "Git Control", category: "Tools", level: 100 },
+  { name: "Agile Methodology", category: "Tools", level: 100 },
+  { name: "API Integration", category: "Tools", level: 100 }
 ];
 
 const education = {
   school: "California State University, Fullerton",
   degree: "Bachelor of Science",
-  major: "Computer Science",
+  major: "Computer Science, Minor in Business Data Analytics",
   period: "August 2022 - Present",
-  coursework: [
-    "Object Oriented Programming",
-    "Data Structures",
-    "Python Programming",
-    "Compilers and Languages",
-    "Software Engineering",
-    "File Systems & Databases",
-    "Front-End Engineering",
-    "Discrete Mathematics",
-    "Linear Algebra"
-  ]
 };
 
 const organizations = [

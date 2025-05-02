@@ -9,6 +9,16 @@ export const Footer = () => {
     });
   };
 
+  const scrollToSection = (sectionId) => (e) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <footer className="bg-gray-900 py-12 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
@@ -18,22 +28,38 @@ export const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                <a 
+                  href="#home" 
+                  onClick={scrollToSection('home')}
+                  className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                >
                   Home
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                <a 
+                  href="#about" 
+                  onClick={scrollToSection('about')}
+                  className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                >
                   About
                 </a>
               </li>
               <li>
-                <a href="#projects" className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                <a 
+                  href="#projects" 
+                  onClick={scrollToSection('projects')}
+                  className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                >
                   Projects
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                <a 
+                  href="#contact" 
+                  onClick={scrollToSection('contact')}
+                  className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                >
                   Contact
                 </a>
               </li>

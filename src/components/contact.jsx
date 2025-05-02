@@ -26,10 +26,10 @@ export const Contact = () => {
 
     emailjs
       .sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_ex9svdk',
+        'template_isnzi4k',
         form.current,
-        'YOUR_PUBLIC_KEY'
+        'VdO95ijny29eFIBVM'
       )
       .then(
         (result) => {
@@ -134,65 +134,6 @@ export const Contact = () => {
               Feel free to reach out to me for any questions or opportunities. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
             </motion.p>
             
-            <div className="space-y-4">
-              <motion.div 
-                className="flex items-center space-x-4 group"
-                whileHover={{ x: 5 }}
-              >
-                <span className="text-blue-500 group-hover:scale-110 transition-transform duration-300">📧</span>
-                <span className="text-gray-400 group-hover:text-blue-500 transition-colors duration-300">your.email@example.com</span>
-              </motion.div>
-              
-              <motion.div 
-                className="flex items-center space-x-4 group"
-                whileHover={{ x: 5 }}
-              >
-                <span className="text-blue-500 group-hover:scale-110 transition-transform duration-300">📱</span>
-                <span className="text-gray-400 group-hover:text-blue-500 transition-colors duration-300">+1 (123) 456-7890</span>
-              </motion.div>
-            </div>
-
-            <div className="flex space-x-4">
-              <motion.a 
-                href="#" 
-                className="text-gray-400 hover:text-blue-500 transition-colors duration-300 relative overflow-hidden group"
-                whileHover={{ scale: 1.1 }}
-              >
-                <span className="relative z-10">GitHub</span>
-                <motion.span 
-                  className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
-              <motion.a 
-                href="#" 
-                className="text-gray-400 hover:text-blue-500 transition-colors duration-300 relative overflow-hidden group"
-                whileHover={{ scale: 1.1 }}
-              >
-                <span className="relative z-10">LinkedIn</span>
-                <motion.span 
-                  className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
-              <motion.a 
-                href="#" 
-                className="text-gray-400 hover:text-blue-500 transition-colors duration-300 relative overflow-hidden group"
-                whileHover={{ scale: 1.1 }}
-              >
-                <span className="relative z-10">Twitter</span>
-                <motion.span 
-                  className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
-            </div>
           </motion.div>
 
           <motion.form 
