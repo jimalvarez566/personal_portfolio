@@ -6,10 +6,9 @@ export const TechStack = ({ technologies }) => (
     {technologies.map((tech, index) => (
       <motion.span 
         key={index}
-        className="px-3 py-1 bg-gray-700 text-sm rounded-full"
+        className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm rounded-full border border-gray-300 dark:border-gray-600"
         whileHover={{ 
           scale: 1.1,
-          backgroundColor: "rgba(59, 130, 246, 0.5)",
           transition: { duration: 0.2 }
         }}
       >

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
 
 export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -67,15 +69,15 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
   };
 
   const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'about', label: 'About', path: '/#about' },
+    { id: 'projects', label: 'Projects', path: '/projects' },
+    { id: 'contact', label: 'Contact', path: '/#contact' }
   ];
 
   return (
     <>
       <motion.nav 
-        className={`fixed top-0 left-0 right-0 z-[55] bg-white dark:bg-gray-900 transition-colors duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[55] bg-blue-100 dark:bg-gray-900 transition-colors duration-300 ${
           scrolled ? "shadow-lg" : ""
         }`}
         variants={navVariants}
@@ -89,12 +91,8 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <a 
-                href="#home" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection('home');
-                }} 
+              <Link 
+                to="/" 
                 className="text-xl font-bold text-gray-900 dark:text-white relative group"
               >
                 Jim<span className="text-blue-500"> Alvarez</span>
@@ -103,34 +101,33 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: 1 }}
                 />
-              </a>
+              </Link>
             </motion.div>
             
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <motion.a
+                <motion.div
                   key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.id);
-                  }}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
-                    activeSection === item.id
-                      ? 'text-blue-500'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                  }`}
                   whileHover={{ y: -2 }}
                 >
-                  {item.label}
-                  {activeSection === item.id && (
-                    <motion.span
-                      className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"
-                      layoutId="activeSection"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </motion.a>
+                  <Link
+                    to={item.path}
+                    className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
+                      (location.pathname === item.path || activeSection === item.id)
+                        ? 'text-blue-500'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {item.label}
+                    {(location.pathname === item.path || activeSection === item.id) && (
+                      <motion.span
+                        className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"
+                        layoutId="activeSection"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                </motion.div>
               ))}
               <ThemeToggle />
             </div>
@@ -180,23 +177,22 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
           >
             <div className="flex flex-col space-y-4 mt-16">
               {navItems.map((item) => (
-                <motion.a
+                <motion.div
                   key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.id);
-                    setMenuOpen(false);
-                  }}
-                  className={`px-4 py-2 text-lg font-medium transition-colors duration-300 ${
-                    activeSection === item.id
-                      ? 'text-blue-500'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                  }`}
                   whileHover={{ x: 5 }}
                 >
-                  {item.label}
-                </motion.a>
+                  <Link
+                    to={item.path}
+                    onClick={() => setMenuOpen(false)}
+                    className={`px-4 py-2 text-lg font-medium transition-colors duration-300 ${
+                      (location.pathname === item.path || activeSection === item.id)
+                        ? 'text-blue-500'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>

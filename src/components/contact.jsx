@@ -91,19 +91,6 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="py-20 px-4 md:px-8 relative overflow-hidden">
-      {/* Floating background elements */}
-      <motion.div 
-        className="absolute top-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"
-        variants={floatingVariants}
-        animate="animate"
-      />
-      <motion.div 
-        className="absolute bottom-20 right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"
-        variants={floatingVariants}
-        animate="animate"
-        style={{ animationDelay: "2s" }}
-      />
-
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2 
           className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500"
@@ -152,7 +139,7 @@ export const Contact = () => {
                 value={formData.user_name}
                 onChange={handleInputChange}
                 placeholder="Your Name"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors duration-300"
+                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 required
               />
               <motion.div
@@ -173,7 +160,7 @@ export const Contact = () => {
                 value={formData.user_email}
                 onChange={handleInputChange}
                 placeholder="Your Email"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors duration-300"
+                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 required
               />
               <motion.div
@@ -194,7 +181,7 @@ export const Contact = () => {
                 onChange={handleInputChange}
                 placeholder="Your Message"
                 rows="5"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors duration-300"
+                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 required
               />
               <motion.div

@@ -57,19 +57,6 @@ export const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 md:px-8 relative overflow-hidden">
-      {/* Floating background elements */}
-      <motion.div 
-        className="absolute top-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"
-        variants={floatingVariants}
-        animate="animate"
-      />
-      <motion.div 
-        className="absolute bottom-20 right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"
-        variants={floatingVariants}
-        animate="animate"
-        style={{ animationDelay: "2s" }}
-      />
-
       <motion.div 
         className="max-w-6xl mx-auto text-center relative z-10"
         variants={containerVariants}
@@ -90,7 +77,7 @@ export const Hero = () => {
           {isTyping && <span className="animate-pulse">|</span>}
         </motion.h2>
         <motion.p 
-          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12"
+          className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12"
           variants={itemVariants}
         >
           I create beautiful, functional, and user-centered digital experiences.
@@ -116,13 +103,13 @@ export const Hero = () => {
           </motion.a>
           <motion.a 
             href="#contact" 
-            className="px-8 py-3 border border-gray-700 text-white rounded-full hover:bg-gray-800 transition-all duration-300 relative overflow-hidden group"
+            className="px-8 py-3 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 relative overflow-hidden group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <span className="relative z-10">Contact Me</span>
             <motion.span 
-              className="absolute inset-0 bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute inset-0 bg-gray-100 dark:bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               initial={{ x: "-100%" }}
               whileHover={{ x: "0%" }}
               transition={{ duration: 0.3 }}

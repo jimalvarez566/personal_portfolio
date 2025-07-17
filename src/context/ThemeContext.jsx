@@ -4,9 +4,14 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
+    // Force dark mode as default - clear any existing preference
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') || 
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      // Clear existing theme preference to force our new default
+      localStorage.removeItem('theme');
+      // Immediately apply dark theme
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      return 'dark';
     }
     return 'dark';
   });

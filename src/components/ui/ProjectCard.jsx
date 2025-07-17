@@ -6,7 +6,7 @@ import { ProjectLinks } from './ProjectLinks';
 
 export const ProjectCard = ({ project, onClick }) => (
   <motion.div 
-    className="group relative overflow-hidden rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer"
+    className="group relative overflow-hidden rounded-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer shadow-lg border border-gray-200 dark:border-gray-700"
     variants={animations.project}
     whileHover="hover"
     onClick={onClick}
@@ -18,17 +18,17 @@ export const ProjectCard = ({ project, onClick }) => (
         className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
         whileHover={{ scale: 1.1 }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-200/80 dark:from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
     
     <div className="p-6">
       <motion.h3 
-        className="text-xl font-semibold mb-2"
+        className="text-xl font-semibold mb-2 text-gray-900 dark:text-white"
         whileHover={{ x: 5 }}
       >
         {project.title}
       </motion.h3>
-      <p className="text-gray-400 mb-4">{project.description}</p>
+      <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
       
       <TechStack technologies={project.technologies} />
       <ProjectLinks project={project} />

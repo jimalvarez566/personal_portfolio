@@ -1,15 +1,12 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { LoadingScreen } from './components/loadingscreen';
 import "./index.css";
 import { Navbar } from './components/navbar';
 import { Mobilemenu } from './components/mobilemenu';
-import { Hero } from './components/hero';
-import { About } from './components/about';
-import { Projects } from './components/projects';
-import { Contact } from './components/contact';
-import { Footer } from './components/footer';
-import { ScrollButtons } from './components/scrollbuttons';
+import { HomePage } from './pages/Home';
+import { ProjectsPage } from './pages/Projects';
 import { useScroll } from './hooks/useScroll';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -23,18 +20,16 @@ function App() {
       {!isLoaded ? (
         <LoadingScreen onComplete={() => setIsLoaded(true)} />
       ) : (
-        <div className="min-h-screen">
-          <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollToSection={scrollToSection} />
-          <Mobilemenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollToSection={scrollToSection} />
-          <main className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-            <Hero />
-            <About />
-            <Projects />
-            <Contact />
-            <Footer />
-            <ScrollButtons />
-          </main>
-        </div>
+        <Router>
+          <div className="min-h-screen">
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollToSection={scrollToSection} />
+            <Mobilemenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollToSection={scrollToSection} />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+            </Routes>
+          </div>
+        </Router>
       )}
     </ThemeProvider>
   );
