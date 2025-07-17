@@ -1,19 +1,20 @@
-import { useState } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
 import { LoadingScreen } from './components/loadingscreen';
 import "./index.css";
 import { Navbar } from './components/navbar';
 import { Mobilemenu } from './components/mobilemenu';
-import { HomePage } from './pages/Home';
-import { ProjectsPage } from './pages/Projects';
-import { useScroll } from './hooks/useScroll';
 import { ThemeProvider } from './context/ThemeContext';
+
+// Lazy load page components
+const HomePage = lazy(() => import('./pages/Home').then(module => ({ default: module.HomePage })));
+const AboutPage = lazy(() => import('./pages/About').then(module => ({ default: module.AboutPage })));
+const ProjectsPage = lazy(() => import('./pages/Projects').then(module => ({ default: module.ProjectsPage })));
+const ContactPage = lazy(() => import('./pages/Contact').then(module => ({ default: module.ContactPage })));
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { scrollToSection } = useScroll();
 
   return (
     <ThemeProvider>
@@ -22,12 +23,16 @@ function App() {
       ) : (
         <Router>
           <div className="min-h-screen">
-            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollToSection={scrollToSection} />
-            <Mobilemenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollToSection={scrollToSection} />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-            </Routes>
+            <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Mobilemenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Suspense fallback={<div></div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
+            </Suspense>
           </div>
         </Router>
       )}

@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
 
-export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
-  const [activeSection, setActiveSection] = useState('home');
+export const Navbar = ({ menuOpen, setMenuOpen }) => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -13,21 +12,6 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position
-      const sections = ['home', 'about', 'projects', 'contact'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -69,9 +53,9 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
   };
 
   const navItems = [
-    { id: 'about', label: 'About', path: '/#about' },
+    { id: 'about', label: 'About', path: '/about' },
     { id: 'projects', label: 'Projects', path: '/projects' },
-    { id: 'contact', label: 'Contact', path: '/#contact' }
+    { id: 'contact', label: 'Contact', path: '/contact' }
   ];
 
   return (
@@ -113,13 +97,13 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
                   <Link
                     to={item.path}
                     className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
-                      (location.pathname === item.path || activeSection === item.id)
+                      location.pathname === item.path
                         ? 'text-blue-500'
                         : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}
                   >
                     {item.label}
-                    {(location.pathname === item.path || activeSection === item.id) && (
+                    {location.pathname === item.path && (
                       <motion.span
                         className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"
                         layoutId="activeSection"
@@ -185,7 +169,7 @@ export const Navbar = ({ menuOpen, setMenuOpen, scrollToSection }) => {
                     to={item.path}
                     onClick={() => setMenuOpen(false)}
                     className={`px-4 py-2 text-lg font-medium transition-colors duration-300 ${
-                      (location.pathname === item.path || activeSection === item.id)
+                      location.pathname === item.path
                         ? 'text-blue-500'
                         : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}

@@ -1,23 +1,8 @@
 import React from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  const scrollToSection = (sectionId) => (e) => {
-    e.preventDefault();
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <footer className="bg-blue-100 dark:bg-gray-900 py-12 px-4 md:px-8 border-t border-blue-200 dark:border-gray-800">
@@ -28,40 +13,36 @@ export const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a 
-                  href="#home" 
-                  onClick={scrollToSection('home')}
+                <Link 
+                  to="/" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#about" 
-                  onClick={scrollToSection('about')}
+                <Link 
+                  to="/about" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#projects" 
-                  onClick={scrollToSection('projects')}
+                <Link 
+                  to="/projects" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#contact" 
-                  onClick={scrollToSection('contact')}
+                <Link 
+                  to="/contact" 
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors duration-300"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -91,27 +72,18 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Back to Top Button */}
-          <div className="flex justify-end items-start">
-            <button
-              onClick={scrollToTop}
-              className="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition-colors duration-300"
-              aria-label="Back to top"
+          {/* Contact Information */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Get In Touch</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              Ready to work together? Let's build something amazing.
+            </p>
+            <Link 
+              to="/contact" 
+              className="inline-block mt-2 text-blue-500 hover:text-blue-600 transition-colors duration-300 text-sm font-medium"
             >
-              <svg 
-                className="w-5 h-5" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M5 10l7-7m0 0l7 7m-7-7v18" 
-                />
-              </svg>
-            </button>
+              Contact Me →
+            </Link>
           </div>
         </div>
 

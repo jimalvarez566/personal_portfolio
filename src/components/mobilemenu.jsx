@@ -1,7 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link, useLocation } from 'react-router-dom';
 
-export const Mobilemenu = ({ menuOpen, setMenuOpen, scrollToSection }) => {
+export const Mobilemenu = ({ menuOpen, setMenuOpen }) => {
+  const location = useLocation();
   const menuVariants = {
     hidden: {
       opacity: 0,
@@ -24,10 +26,10 @@ export const Mobilemenu = ({ menuOpen, setMenuOpen, scrollToSection }) => {
   };
 
   const menuItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'home', label: 'Home', path: '/' },
+    { id: 'about', label: 'About', path: '/about' },
+    { id: 'projects', label: 'Projects', path: '/projects' },
+    { id: 'contact', label: 'Contact', path: '/contact' }
   ];
 
   return (
@@ -51,17 +53,22 @@ export const Mobilemenu = ({ menuOpen, setMenuOpen, scrollToSection }) => {
       >
         <div className="flex flex-col space-y-4 mt-20">
           {menuItems.map((item) => (
-            <motion.button
+            <motion.div
               key={item.id}
-              onClick={() => {
-                scrollToSection(item.id);
-                setMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
               whileHover={{ x: 5 }}
             >
-              {item.label}
-            </motion.button>
+              <Link
+                to={item.path}
+                onClick={() => setMenuOpen(false)}
+                className={`block w-full text-left px-4 py-2 text-lg font-medium transition-colors duration-300 ${
+                  location.pathname === item.path
+                    ? 'text-blue-500'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                {item.label}
+              </Link>
+            </motion.div>
           ))}
         </div>
       </motion.div>

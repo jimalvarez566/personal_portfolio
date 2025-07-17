@@ -60,6 +60,7 @@ const organizations = [
     period: "September 2023 - Present",
     role: "Professional Development Chair",
     rolePeriod: "Jul 2025 – Present",
+    logo: "/theta-tau-logo.png",
     achievements: [
       "Organizing monthly career workshops and internship accountability systems for 40+ engineering members.",
       "Coordinating resume reviews, academic check-ins, and alumni mentorship to support member growth and placement.",
@@ -123,33 +124,6 @@ export const About = () => {
             {/* Headshot Section */}
             <div className="relative">
               <div className="relative w-64 h-64 mx-auto">
-                {/* Decorative elements */}
-                <motion.div
-                  className="absolute inset-0 rounded-full border-4 border-blue-500/20"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.div
-                  className="absolute inset-0 rounded-full border-4 border-purple-500/20"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, -5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                />
-                
                 {/* Headshot image */}
                 <motion.div
                   className="relative w-full h-full rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700"
@@ -165,35 +139,6 @@ export const About = () => {
                       e.target.style.display = 'none';
                     }}
                   />
-                </motion.div>
-                
-                {/* Floating badges */}
-                <motion.div
-                  className="absolute -bottom-4 -right-4 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium"
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  Computer Science
-                </motion.div>
-                <motion.div
-                  className="absolute -top-4 -left-4 bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-medium"
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                >
-                  Developer
                 </motion.div>
               </div>
 
@@ -349,29 +294,59 @@ export const About = () => {
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Organizations</h3>
               <div className="space-y-4">
                 {organizations.map((org, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-gray-900 dark:text-white font-medium">{org.name}</span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">{org.period}</span>
-                    </div>
-                    {org.role && (
-                      <>
-                        <div className="flex justify-between items-center mb-3">
-                          <span className="text-blue-500 font-medium">{org.role}</span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded">
-                            {org.rolePeriod}
+                  <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <div className="flex items-start gap-4 mb-4">
+                      {/* Organization Logo */}
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-600">
+                          {org.logo ? (
+                            <img 
+                              src={org.logo} 
+                              alt={`${org.name} logo`}
+                              className="w-10 h-10 object-contain rounded"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                                e.target.parentElement.innerHTML = '<span class="text-blue-500 font-bold text-sm">TT</span>';
+                              }}
+                            />
+                          ) : (
+                            <span className="text-blue-500 font-bold text-sm">ACM</span>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {/* Organization Details */}
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{org.name}</h4>
+                            {org.role && <p className="text-blue-500 font-medium">{org.role}</p>}
+                          </div>
+                          <span className="text-sm text-gray-500 dark:text-gray-400 bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full whitespace-nowrap">
+                            {org.period}
                           </span>
                         </div>
-                        <div className="space-y-1">
-                          {org.achievements.map((achievement, achievementIndex) => (
-                            <div key={achievementIndex} className="flex items-start gap-2">
-                              <span className="text-blue-500 mt-1 flex-shrink-0 text-xs">•</span>
-                              <p className="text-gray-600 dark:text-gray-300 text-sm">{achievement}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </>
-                    )}
+                        
+                        {org.role && org.rolePeriod && (
+                          <div className="mb-3">
+                            <span className="text-xs text-gray-500 dark:text-gray-400 bg-purple-100 dark:bg-purple-900/30 px-2 py-1 rounded">
+                              {org.rolePeriod}
+                            </span>
+                          </div>
+                        )}
+                        
+                        {org.achievements && (
+                          <div className="space-y-1">
+                            {org.achievements.map((achievement, achievementIndex) => (
+                              <div key={achievementIndex} className="flex items-start gap-2">
+                                <span className="text-blue-500 mt-1.5 flex-shrink-0 text-xs">•</span>
+                                <p className="text-gray-600 dark:text-gray-300 text-sm">{achievement}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
