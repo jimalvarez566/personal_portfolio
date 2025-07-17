@@ -31,11 +31,15 @@ dist-ssr
 .env.test.local
 .env.production.local
 
-# Large media files and logos - keep private
-public/headshot.jpg
+# Company logos - keep private  
 public/lendapi-logo.png
 public/theta-tau-logo.png
-public/acm-logo.png
+
+# Headshot - now public for portfolio
+# public/headshot.jpg (removed from gitignore)
+
+# ACM logo - now public for portfolio  
+# public/acm-logo.png (removed from gitignore)
 
 # Build output
 build/
