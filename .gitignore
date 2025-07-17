@@ -31,8 +31,11 @@ dist-ssr
 .env.test.local
 .env.production.local
 
-# Large media files
+# Large media files and logos - keep private
 public/headshot.jpg
+public/lendapi-logo.png
+public/theta-tau-logo.png
+public/acm-logo.png
 
 # Build output
 build/

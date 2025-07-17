@@ -2,40 +2,28 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export const ProjectLinks = ({ project }) => (
-  <div className="flex gap-4">
-    <motion.a 
-      href={project.liveLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-400 hover:text-blue-300 transition-colors duration-300 relative overflow-hidden group"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <span className="relative z-10">Live Demo</span>
-      <motion.span 
-        className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        initial={{ x: "-100%" }}
-        whileHover={{ x: "0%" }}
-        transition={{ duration: 0.3 }}
-      />
-    </motion.a>
-    <motion.a 
-      href={project.codeLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-400 hover:text-blue-300 transition-colors duration-300 relative overflow-hidden group"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <span className="relative z-10">View Code</span>
-      <motion.span 
-        className="absolute inset-0 bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        initial={{ x: "-100%" }}
-        whileHover={{ x: "0%" }}
-        transition={{ duration: 0.3 }}
-      />
-    </motion.a>
+  <div className="flex gap-3">
+    {project.liveLink && (
+      <a 
+        href={project.liveLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-4 py-2 bg-blue-500 text-white border border-blue-500 rounded-lg hover:bg-blue-600 hover:border-blue-600 transition-colors duration-200"
+        onClick={(e) => e.stopPropagation()}
+      >
+        Live Demo
+      </a>
+    )}
+    {project.codeLink && (
+      <a 
+        href={project.codeLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-4 py-2 bg-transparent text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200"
+        onClick={(e) => e.stopPropagation()}
+      >
+        View Code
+      </a>
+    )}
   </div>
 ); 

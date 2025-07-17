@@ -26,10 +26,10 @@ export const Contact = () => {
 
     emailjs
       .sendForm(
-        'service_ex9svdk',
-        'template_isnzi4k',
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        'VdO95ijny29eFIBVM'
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
         (result) => {
@@ -95,9 +95,8 @@ export const Contact = () => {
         <motion.h2 
           className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500"
           initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
         >
           Get In Touch
         </motion.h2>
@@ -106,8 +105,7 @@ export const Contact = () => {
           className="grid md:grid-cols-2 gap-12"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
         >
           <motion.div 
             className="space-y-6"
@@ -115,7 +113,7 @@ export const Contact = () => {
           >
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Contact Information</h3>
             <motion.p 
-              className="text-gray-400"
+              className="text-gray-600 dark:text-gray-400"
               whileHover={{ x: 5 }}
             >
               Feel free to reach out to me for any questions or opportunities. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.

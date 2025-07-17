@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { animations } from '../../animations/variants';
 import { TechStack } from './TechStack';
+import { ProjectLinks } from './ProjectLinks';
 
 export const ProjectModal = ({ project, onClose }) => {
   // Prevent background scrolling when modal is open
@@ -65,11 +66,6 @@ export const ProjectModal = ({ project, onClose }) => {
           <div className="flex-1 overflow-y-auto p-6 pt-4">
             {/* Demo container */}
             <div className="relative aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-6 overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover opacity-60"
-              />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="flex items-center bg-black/60 text-white py-2 px-4 rounded">
                   <svg className="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -107,14 +103,9 @@ export const ProjectModal = ({ project, onClose }) => {
               {project.period}
             </div>
             
-            {/* View Code button */}
+            {/* Project Links */}
             <div className="flex justify-center pt-2">
-              <button 
-                className="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white py-2 px-6 rounded-lg transition-colors duration-300 border border-gray-300 dark:border-gray-600"
-                onClick={(e) => e.stopPropagation()}
-              >
-                View Code
-              </button>
+              <ProjectLinks project={project} />
             </div>
           </div>
         </motion.div>

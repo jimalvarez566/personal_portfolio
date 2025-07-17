@@ -79,7 +79,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                 to="/" 
                 className="text-xl font-bold text-gray-900 dark:text-white relative group"
               >
-                Jim<span className="text-blue-500"> Alvarez</span>
+                Jim Alvarez
                 <motion.span 
                   className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                   initial={{ scaleX: 0 }}

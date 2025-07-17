@@ -20,12 +20,11 @@ export const animations = {
       }
     },
     hover: {
-      y: -10,
+      y: -8,
       scale: 1.02,
       transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10
+        duration: 0.2,
+        ease: "easeInOut"
       }
     }
   },

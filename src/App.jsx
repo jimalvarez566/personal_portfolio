@@ -1,16 +1,14 @@
-import { useState, Suspense, lazy } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LoadingScreen } from './components/loadingscreen';
 import "./index.css";
 import { Navbar } from './components/navbar';
 import { Mobilemenu } from './components/mobilemenu';
+import { HomePage } from './pages/Home';
+import { AboutPage } from './pages/About';
+import { ProjectsPage } from './pages/Projects';
+import { ContactPage } from './pages/Contact';
 import { ThemeProvider } from './context/ThemeContext';
-
-// Lazy load page components
-const HomePage = lazy(() => import('./pages/Home').then(module => ({ default: module.HomePage })));
-const AboutPage = lazy(() => import('./pages/About').then(module => ({ default: module.AboutPage })));
-const ProjectsPage = lazy(() => import('./pages/Projects').then(module => ({ default: module.ProjectsPage })));
-const ContactPage = lazy(() => import('./pages/Contact').then(module => ({ default: module.ContactPage })));
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,14 +23,12 @@ function App() {
           <div className="min-h-screen">
             <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             <Mobilemenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Suspense fallback={<div></div>}>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/projects" element={<ProjectsPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-              </Routes>
-            </Suspense>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
           </div>
         </Router>
       )}

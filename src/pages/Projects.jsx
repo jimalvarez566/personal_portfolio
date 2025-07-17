@@ -7,11 +7,25 @@ import { animations } from '../animations/variants';
 
 const projects = [
   {
+    title: "TaskBuddy App",
+    description: "Engineering a full-stack task management app using FastAPI (Python) for the backend and React Native/Expo for the mobile frontend. Designed and implemented a RESTful API with secure user authentication.",
+    technologies: ["FastAPI", "React Native", "TypeScript", "JWT", "Expo", "Python"],
+    image: "https://via.placeholder.com/600x400",
+    period: "May 2025 – Present",
+    codeLink: "https://github.com/jimalvarez566/task_buddy",
+    highlights: [
+      "Designed and implemented a RESTful API using FastAPI, enabling secure and scalable task management features",
+      "Engineering a full-stack task management app using FastAPI (Python) for the backend and React Native/Expo for the mobile frontend",
+      "Developed robust user authentication and authorization with JWT tokens, password hashing, and input validation using Pydantic"
+    ]
+  },
+  {
     title: "Interactive Weather Application",
     description: "Developed a weather forecasting web app using HTML, CSS, and JavaScript, integrating APIs to provide real-time and 5-day forecasts. Implemented city-based search and geolocation-based weather retrieval for user convenience.",
     technologies: ["HTML", "CSS", "JavaScript", "API Integration", "UI/UX"],
     image: "https://via.placeholder.com/600x400",
     period: "October 2024 - December 2024",
+    codeLink: "https://github.com/jimalvarez566/weatherapp",
     highlights: [
       "Developed a weather forecasting web app using HTML, CSS, and JavaScript",
       "Integrated APIs for real-time and 5-day forecasts",
@@ -20,42 +34,17 @@ const projects = [
     ]
   },
   {
-    title: "Data Structures Comparison",
-    description: "Conducted comprehensive performance analysis of various data structures, focusing on insertion, deletion, and retrieval operations. Designed and ran benchmarking tests to quantify efficiency differences in real-world applications.",
-    technologies: ["Data Structures", "Performance Analysis", "LibreOffice", "Benchmarking"],
-    image: "https://via.placeholder.com/600x400",
-    period: "April 2024 - May 2024",
-    highlights: [
-      "Conducted performance analysis of various data structures",
-      "Designed and ran benchmarking tests",
-      "Visualized time complexity results using graphs",
-      "Quantified efficiency differences in real-world applications"
-    ]
-  },
-  {
-    title: "Food Waste Tracker",
-    description: "Engineered a food wastage tracking application using object-oriented programming to calculate waste in monetary terms. Built a user-friendly interface for data collection and actionable insights on reducing waste.",
-    technologies: ["Object-Oriented Programming", "UI Design", "Data Collection"],
-    image: "https://via.placeholder.com/600x400",
-    period: "October 2023 - December 2023",
-    highlights: [
-      "Engineered a food wastage tracking application",
-      "Used object-oriented programming principles",
-      "Built a user-friendly interface",
-      "Implemented waste calculation in monetary terms"
-    ]
-  },
-  {
-    title: "Handheld Game Console",
-    description: "Developed and programmed a handheld gaming device using Python, successfully integrating audio and power management. Optimized hardware selection for a lightweight, power-efficient design using the Pygame library.",
-    technologies: ["Python", "Pygame", "Hardware Integration", "Power Management"],
+    title: "Alien Invasion",
+    description: "Developed and programmed an Alien Invasion game using Python, successfully integrating audio and power management. Optimized hardware selection for a lightweight, power-efficient handheld gaming device using the Pygame library.",
+    technologies: ["Python", "Pygame", "Hardware Integration", "Power Management", "Game Development"],
     image: "https://via.placeholder.com/600x400",
     period: "September 2023 - December 2023",
+    codeLink: "https://github.com/jimalvarez566/AlienInvasion",
     highlights: [
-      "Developed a handheld gaming device using Python",
-      "Integrated audio and power management",
-      "Optimized hardware selection for efficiency",
-      "Utilized Pygame for graphics and user input"
+      "Developed an Alien Invasion game using Python and Pygame",
+      "Integrated audio and power management for handheld gaming device",
+      "Optimized hardware selection for efficiency and portability",
+      "Utilized Pygame for graphics, user input, and game mechanics"
     ]
   }
 ];

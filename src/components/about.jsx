@@ -69,7 +69,13 @@ const organizations = [
   },
   {
     name: "CSUF Association for Computing Machinery (ACM)",
-    period: "January 2024 - Present"
+    period: "January 2024 - Present",
+    logo: "/acm-logo.png",
+    achievements: [
+      "Attending workshops on algorithms, software development, and emerging technologies.",
+      "Participating in technical discussions and networking events with computer science professionals.",
+      "Engaging with industry speakers and learning about career opportunities in tech."
+    ]
   }
 ];
 
@@ -109,8 +115,9 @@ export const About = () => {
           About Me
         </motion.h2>
         
+        {/* Top Section - Profile and Experience */}
         <motion.div 
-          className="grid lg:grid-cols-3 gap-8"
+          className="grid lg:grid-cols-3 gap-8 mb-12 items-end"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -118,7 +125,7 @@ export const About = () => {
         >
           {/* Left Column - Profile */}
           <motion.div 
-            className="lg:col-span-1 space-y-8"
+            className="lg:col-span-1 space-y-6"
             variants={itemVariants}
           >
             {/* Headshot Section */}
@@ -131,7 +138,7 @@ export const About = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <img
-                    src="./headshot.jpg"
+                    src="/headshot.jpg"
                     alt="Jim Alvarez"
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -174,7 +181,7 @@ export const About = () => {
             </div>
 
             {/* Education */}
-            <motion.div className="space-y-4">
+            <motion.div className="space-y-3">
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Education</h3>
               <div className="space-y-2">
                 <p className="text-lg font-medium text-gray-800 dark:text-gray-200">{education.school}</p>
@@ -185,9 +192,9 @@ export const About = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Experience, Skills, Organizations */}
+          {/* Right Column - Experience Only */}
           <motion.div 
-            className="lg:col-span-2 space-y-8"
+            className="lg:col-span-2"
             variants={itemVariants}
           >
             {/* Experience */}
@@ -209,7 +216,7 @@ export const About = () => {
                             <img 
                               src={exp.logo} 
                               alt={`${exp.company} logo`}
-                              className="w-10 h-10 object-contain rounded"
+                              className="w-8 h-8 object-contain rounded"
                               onError={(e) => {
                                 e.target.style.display = 'none';
                                 e.target.parentElement.innerHTML = '<span class="text-blue-500 font-bold text-sm">LA</span>';
@@ -261,97 +268,117 @@ export const About = () => {
                 ))}
               </div>
             </motion.div>
+          </motion.div>
+        </motion.div>
 
-            {/* Skills */}
-            <motion.div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Skills</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {Object.entries(skills.reduce((acc, skill) => {
-                  if (!acc[skill.category]) acc[skill.category] = [];
-                  acc[skill.category].push(skill);
-                  return acc;
-                }, {})).map(([category, categorySkills]) => (
-                  <div key={category} className="space-y-2">
-                    <h4 className="font-medium text-gray-700 dark:text-gray-300">{category}</h4>
-                    {categorySkills.map((skill, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div 
-                            className="bg-blue-500 h-2 rounded-full"
-                            style={{ width: `${skill.level}%` }}
-                          />
-                        </div>
-                        <span className="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">{skill.name}</span>
+        {/* Skills Section - Full Width */}
+        <motion.div 
+          className="mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div className="space-y-6">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white text-center">Skills</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {Object.entries(skills.reduce((acc, skill) => {
+                if (!acc[skill.category]) acc[skill.category] = [];
+                acc[skill.category].push(skill);
+                return acc;
+              }, {})).map(([category, categorySkills]) => (
+                <div key={category} className="space-y-2">
+                  <h4 className="font-medium text-gray-700 dark:text-gray-300">{category}</h4>
+                  {categorySkills.map((skill, index) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div 
+                          className="bg-blue-500 h-2 rounded-full"
+                          style={{ width: `${skill.level}%` }}
+                        />
                       </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+                      <span className="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">{skill.name}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
 
-            {/* Organizations */}
-            <motion.div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Organizations</h3>
-              <div className="space-y-4">
-                {organizations.map((org, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
-                    <div className="flex items-start gap-4 mb-4">
-                      {/* Organization Logo */}
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-600">
-                          {org.logo ? (
-                            <img 
-                              src={org.logo} 
-                              alt={`${org.name} logo`}
-                              className="w-10 h-10 object-contain rounded"
-                              onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.parentElement.innerHTML = '<span class="text-blue-500 font-bold text-sm">TT</span>';
-                              }}
-                            />
-                          ) : (
-                            <span className="text-blue-500 font-bold text-sm">ACM</span>
-                          )}
-                        </div>
-                      </div>
-                      
-                      {/* Organization Details */}
-                      <div className="flex-1">
-                        <div className="flex justify-between items-start mb-2">
-                          <div>
-                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{org.name}</h4>
-                            {org.role && <p className="text-blue-500 font-medium">{org.role}</p>}
-                          </div>
-                          <span className="text-sm text-gray-500 dark:text-gray-400 bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full whitespace-nowrap">
-                            {org.period}
-                          </span>
-                        </div>
-                        
-                        {org.role && org.rolePeriod && (
-                          <div className="mb-3">
-                            <span className="text-xs text-gray-500 dark:text-gray-400 bg-purple-100 dark:bg-purple-900/30 px-2 py-1 rounded">
-                              {org.rolePeriod}
-                            </span>
-                          </div>
-                        )}
-                        
-                        {org.achievements && (
-                          <div className="space-y-1">
-                            {org.achievements.map((achievement, achievementIndex) => (
-                              <div key={achievementIndex} className="flex items-start gap-2">
-                                <span className="text-blue-500 mt-1.5 flex-shrink-0 text-xs">•</span>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm">{achievement}</p>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+        {/* Organizations Section - Horizontal Layout */}
+        <motion.div 
+          className="space-y-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white text-center">Organizations</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {organizations.map((org, index) => (
+              <motion.div 
+                key={index} 
+                className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                                  <div className="flex items-start gap-3 mb-3">
+                    {/* Organization Logo */}
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-600">
+                      {org.logo ? (
+                        <img 
+                          src={org.logo} 
+                          alt={`${org.name} logo`}
+                          className="w-8 h-8 object-contain rounded"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            const fallbackText = org.name.includes('Theta Tau') ? 'TT' : 'ACM';
+                            e.target.parentElement.innerHTML = `<span class="text-blue-500 font-bold text-xs">${fallbackText}</span>`;
+                          }}
+                        />
+                      ) : (
+                        <span className="text-blue-500 font-bold text-xs">ACM</span>
+                      )}
                     </div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
+                  
+                  {/* Organization Details */}
+                  <div className="flex-1">
+                                          <div className="flex justify-between items-start mb-1">
+                        <div>
+                          <h4 className="text-base font-semibold text-gray-900 dark:text-white">{org.name}</h4>
+                          {org.role && <p className="text-blue-500 font-medium text-sm">{org.role}</p>}
+                        </div>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded-full whitespace-nowrap">
+                          {org.period}
+                        </span>
+                      </div>
+                      
+                      {org.role && org.rolePeriod && (
+                        <div className="mb-2">
+                          <span className="text-xs text-gray-500 dark:text-gray-400 bg-purple-100 dark:bg-purple-900/30 px-2 py-1 rounded">
+                            {org.rolePeriod}
+                          </span>
+                        </div>
+                      )}
+                      
+                      {org.achievements && (
+                        <div className="space-y-0.5">
+                          {org.achievements.map((achievement, achievementIndex) => (
+                            <div key={achievementIndex} className="flex items-start gap-2">
+                              <span className="text-blue-500 mt-1 flex-shrink-0 text-xs">•</span>
+                              <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">{achievement}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
