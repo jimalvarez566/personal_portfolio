@@ -142,7 +142,6 @@ export const About = () => {
                     alt="Jim Alvarez"
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      console.error("Error loading image:", e);
                       e.target.style.display = 'none';
                     }}
                   />

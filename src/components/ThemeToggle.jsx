@@ -1,15 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 
 export const ThemeToggle = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    console.log('Current theme:', theme);
-  }, [theme]);
-
   const handleToggle = () => {
-    console.log('Toggle clicked, current theme:', theme);
     toggleTheme();
   };
 

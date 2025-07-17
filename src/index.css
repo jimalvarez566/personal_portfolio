@@ -23,7 +23,7 @@ body {
     }
   }
   .animate-blink {
-    animation: loading 0.8s step-end infinite;
+    animation: blink 0.8s step-end infinite;
   }
 
   @keyframes loading {
